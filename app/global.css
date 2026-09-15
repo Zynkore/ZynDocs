@@ -1,32 +1,48 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
   --fd-layout-width: 1400px;
   --radius: 0.625rem;
-  --brand: #e66b2e;
-  --brand-2: #868780;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --border: oklch(0.922 0 0);
+  --primary: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --ring: oklch(0.708 0 0);
+  --superborder-color-1: rgb(0 0 0 / 30%);
+  --superborder-color-2: rgb(0 0 0 / 30%);
+  --superborder-color-3: rgb(0 0 0 / 30%);
 }
 
 .dark {
-  --color-fd-background: #000;
-  --color-fd-foreground: oklch(0.985 0 0);
-  --color-fd-card: oklch(0.205 0 0);
-  --color-fd-card-foreground: oklch(0.985 0 0);
-  --color-fd-popover: oklch(0.205 0 0);
-  --color-fd-popover-foreground: oklch(0.985 0 0);
-  --color-fd-muted: oklch(0.269 0 0);
-  --color-fd-muted-foreground: oklch(0.708 0 0);
-  --color-fd-secondary: oklch(0.229 0 0);
-  --color-fd-secondary-foreground: oklch(0.985 0 0);
-  --color-fd-accent: oklch(0.269 0 0);
-  --color-fd-accent-foreground: oklch(0.985 0 0);
-  --color-fd-border: oklch(1 0 0 / 10%);
-  --color-fd-primary: oklch(0.922 0 0);
-  --color-fd-primary-foreground: oklch(0.205 0 0);
-  --color-fd-ring: oklch(0.556 0 0);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.185 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --primary: oklch(0.922 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --ring: oklch(0.556 0 0);
+  --superborder-color-1: rgb(255 255 255 / 90%);
+  --superborder-color-2: rgb(255 255 255 / 12%);
+  --superborder-color-3: rgb(255 255 255 / 90%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
 }
 
 @layer base {
@@ -41,8 +57,7 @@
   }
 
   body {
-    background: var(--color-fd-background);
-    color: var(--color-fd-foreground);
+    @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -53,35 +68,99 @@
   }
 }
 
-/* TreeHub-style documentation surfaces. */
+#nd-nav,
 #nd-tocnav,
 #nd-subnav {
   border: 0;
   background: transparent;
 }
 
+#nd-nav div div div a {
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+#nd-subnav button svg,
+#nd-nav button svg {
+  opacity: 0.5;
+}
+
+header nav,
+#nd-subnav {
+  height: 60px;
+  padding-inline: 20px;
+}
+
 #nd-sidebar {
-  background: #000;
-  border-color: var(--color-fd-border);
+  background: var(--background);
+  border-color: var(--border);
 }
 
 #nd-docs-layout main {
-  background: #000;
+  background: var(--background);
 }
 
-#nd-docs-layout main > article,
-#nd-docs-layout main > div > article {
-  background: var(--color-fd-card);
-  border: 1px solid var(--color-fd-border);
-  border-radius: 1.25rem;
+.superborder {
+  position: relative;
+  border-radius: inherit;
   overflow: hidden;
+}
+
+.superborder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 0.8px;
+  opacity: 0.22;
+  background: linear-gradient(
+    to bottom right,
+    var(--superborder-color-1),
+    var(--superborder-color-2),
+    var(--superborder-color-3)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+[data-state='open'][data-orientation='horizontal'] button {
+  border-radius: 9999px !important;
+  border: 0;
+  background: rgb(255 255 255 / 3%);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-state='open'][data-orientation='horizontal'] button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 0.8px;
+  opacity: 0.22;
+  background: linear-gradient(
+    to bottom right,
+    var(--superborder-color-1),
+    var(--superborder-color-2),
+    var(--superborder-color-3)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .fd-codeblock,
 figure[data-rehype-pretty-code-figure] {
   background: rgb(255 255 255 / 5%);
-  border: 1px solid var(--color-fd-border);
-  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -93,8 +172,8 @@ figure[data-rehype-pretty-code-figure] pre {
 
 [data-radix-accordion-item],
 [data-slot='accordion-item'] {
-  border-color: var(--color-fd-border);
-  background: var(--color-fd-card);
+  border-color: var(--border);
+  background: var(--card);
 }
 
 h1,
