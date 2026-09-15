@@ -155,20 +155,6 @@ header nav,
   pointer-events: none;
 }
 
-.fd-codeblock,
-figure[data-rehype-pretty-code-figure] {
-  background: rgb(255 255 255 / 5%);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.fd-codeblock pre,
-figure[data-rehype-pretty-code-figure] pre {
-  border: 0;
-  border-radius: 0;
-}
-
 [data-radix-accordion-item],
 [data-slot='accordion-item'] {
   border-color: var(--border);
