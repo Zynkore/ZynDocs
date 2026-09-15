@@ -139,7 +139,7 @@
     background: transparent;
 }
 
-#nd-nav ul li:last-child button::hover {
+#nd-nav ul li:last-child button:hover {
     background: transparent;
 }
 
