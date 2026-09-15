@@ -1,6 +1,41 @@
 @import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/black.css';
 @import 'fumadocs-ui/css/preset.css';
+
+:root {
+  --fd-layout-width: 1400px;
+}
+
+.dark {
+  --color-fd-background: hsl(0 0% 7%);
+  --color-fd-foreground: hsl(0 0% 92%);
+  --color-fd-muted: hsl(0 0% 13%);
+  --color-fd-muted-foreground: hsl(0 0% 70% / 0.8);
+  --color-fd-popover: hsl(0 0% 12%);
+  --color-fd-popover-foreground: hsl(0 0% 87%);
+  --color-fd-card: hsl(0 0% 10%);
+  --color-fd-card-foreground: hsl(0 0% 98%);
+  --color-fd-border: hsl(0 0% 40% / 0.2);
+  --color-fd-primary: hsl(0 0% 98%);
+  --color-fd-primary-foreground: hsl(0 0% 9%);
+  --color-fd-secondary: hsl(0 0% 13%);
+  --color-fd-secondary-foreground: hsl(0 0% 92%);
+  --color-fd-accent: hsl(0 0% 41% / 0.3);
+  --color-fd-accent-foreground: hsl(0 0% 90%);
+  --color-fd-ring: hsl(0 0% 55%);
+}
+
+/* Obsidian/WindUI-like surfaces for documentation accordions and code blocks. */
+[data-radix-accordion-item],
+[data-slot='accordion-item'] {
+  border-color: var(--color-fd-border);
+  background: var(--color-fd-card);
+}
+
+pre {
+  border-color: var(--color-fd-border) !important;
+  border-radius: 0.75rem !important;
+}
 
 html {
   scrollbar-gutter: stable;
