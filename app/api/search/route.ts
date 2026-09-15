@@ -5,7 +5,6 @@ const search = createFromSource(source);
 
 export const dynamic = 'force-static';
 export const revalidate = false;
-
 export async function GET() {
   return Response.json(await search.export());
 }
