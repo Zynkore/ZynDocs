@@ -3,6 +3,7 @@ title: Window
 ---
 
 ## Creating window
+
 ```luau
 local Window = Library:MakeWindow({
   Title = "Cool title", -- No function
@@ -13,20 +14,24 @@ local Window = Library:MakeWindow({
 
 <Accordions>
   <Accordion title="Title - No function">
-    <p>Window title</p>
-    <p><strong>Type:</strong> <code>String</code></p>
-    <p><strong>Default:</strong> <code>"Missing title"</code></p>
+    <div className="space-y-1">
+      <div>Window title</div>
+      <div><strong>Type:</strong> <code>String</code></div>
+      <div><strong>Default:</strong> <code>"Missing title"</code></div>
+    </div>
   </Accordion>
-
   <Accordion title="UICorner">
-    <p>Window corner</p>
-    <p><strong>Type:</strong> <code>Boolean</code></p>
-    <p><strong>Default:</strong> <code>false</code></p>
-  </Accordion> 
-
+    <div className="space-y-1">
+      <div>Window corner</div>
+      <div><strong>Type:</strong> <code>Boolean</code></div>
+      <div><strong>Default:</strong> <code>false</code></div>
+    </div>
+  </Accordion>
   <Accordion title="CornerRadius">
-    <p>Window corner radius</p>
-    <p><strong>Type:</strong> <code>UDim</code></p>
-    <p><strong>Default:</strong> <code>UDim.new(0, 6)</code></p>
+    <div className="space-y-1">
+      <div>Window corner radius</div>
+      <div><strong>Type:</strong> <code>UDim</code></div>
+      <div><strong>Default:</strong> <code>UDim.new(0, 6)</code></div>
+    </div>
   </Accordion>
 </Accordions>
