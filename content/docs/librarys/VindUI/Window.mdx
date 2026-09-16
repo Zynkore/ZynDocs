@@ -1,0 +1,52 @@
+---
+title: Window
+---
+
+## Window
+### `CreateWindow(options)`
+
+Creates the main window and returns the object used to add tabs, panels, and dock buttons.
+```lua
+local Window = VindUI:CreateWindow({
+    Title = "My Script",
+    Subtitle = "v1.0.0",
+    Icon = "Lucide:box",
+    Size = UDim2.fromOffset(640, 455),
+    MinSize = Vector2.new(500, 360),
+    Draggable = true,
+    Resizable = true,
+    UseBlur = true,
+    DefaultTab = "Home",
+    ToggleKeybind = Enum.KeyCode.RightShift,
+    TogglePosition = UDim2.fromOffset(20, 220)
+})
+```
+
+| Option | Type | Description |
+| --- | --- | --- |
+| `Title` | `string` | Text displayed at the top of the window. |
+| `Subtitle` | `string` | Smaller text displayed below the title. |
+| `Icon` | `string` | Window icon. |
+| `Size` | `UDim2` | Initial window size. |
+| `MinSize` | `Vector2` | Smallest allowed size while resizing. |
+| `Draggable` | `boolean` | Allows the window to be dragged. |
+| `Resizable` | `boolean` | Enables the resize handle. |
+| `UseBlur` | `boolean` | Enables background blur. |
+| `DefaultTab` | `string` | Tab selected when the window opens. |
+| `ToggleKeybind` | `Enum.KeyCode` | Key used to show or hide the interface. |
+| `TogglePosition` | `UDim2` | Position of the mobile toggle button. |
+
+### Window methods
+```lua
+Window:SetTitle("New title", "New subtitle")
+Window:Open()
+Window:Close()
+Window:Toggle()
+Window:ToggleFullscreen()
+Window:SelectTab("Settings")
+Window:JumpToElement("Primary Color")
+
+print(Window:IsOpen())
+
+Window:Destroy()
+```
