@@ -218,3 +218,8 @@ header nav, #nd-subnav {
 #nd-nav div nav ul li button {
     background: transparent !important;
 }
+
+/* Keep previous/next navigation directly after the document content. */
+#nd-page > article > [role="none"].flex-1 {
+    flex: none;
+}
