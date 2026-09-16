@@ -1,0 +1,51 @@
+---
+title: Tabs and subtabs
+---
+
+### Standard tab
+```lua
+local General = Window:AddTab({
+    Name = "General",
+    Icon = "Lucide:settings",
+    GlowColor = Color3.fromRGB(124, 92, 255),
+    Hidden = false
+})
+local ShortForm = Window:AddTab("Other")
+```
+
+### Subtabs
+```lua
+local Player = General:AddSubTab({
+  Name = "Player",
+  Icon = "Lucide:user"
+})
+
+local Visuals = General:AddSubTab({
+  Name = "Visuals",
+  Icon = "Lucide:eye"
+})
+
+General:SelectSubTab(1)
+General:SelectSubTabByName("Visuals")
+
+Player:AddToggle({
+  Text = "Enabled",
+  Default = true
+})
+```
+The subtab bar scrolls horizontally when it runs out of space. Selecting a hidden subtab automatically brings it into view.
+
+### Private tab
+```lua
+local Admin = Window:AddPrivateTab({
+    Name = "Admin",
+    Icon = "Lucide:lock",
+    Password = "my-password"
+})
+```
+
+The password only protects access through the interface. It does not hide sensitive data stored in public source code.
+Add a separator to the sidebar with:
+```lua
+Window:AddTabLine()
+```
