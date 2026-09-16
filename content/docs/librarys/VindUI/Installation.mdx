@@ -2,7 +2,22 @@
 title: Installation
 ---
 
-### VindUI Preview
+# VindUI Preview
 <p align="center">
   <img alt="Vind Ui Reborn interface preview" src="https://raw.githubusercontent.com/Skinny-yz/VVind-UI/main/vind-ui-reborn-banner.png">
 </p>
+
+## Load the currently hosted build:
+```luau
+local VindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Skinny-yz/VVind-UI/refs/heads/main/src.lua"))()
+```
+
+## Official source:
+```luau
+local VindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Skinny-yz/VVind-UI/refs/heads/main/src.lua"))()
+```
+
+## For local development:
+```luau
+local VindUI = loadstring(readfile("src.lua"))()
+```
