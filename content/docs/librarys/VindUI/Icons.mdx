@@ -1,0 +1,19 @@
+---
+title: Icons
+---
+## Icons
+Vind Ui Reborn supports Lucide, Material, Phosphor, Phosphor Filled, and SF icons. Lucide is used when no pack is specified.
+```lua
+Icon = "house"
+Icon = "Lucide:house"
+Icon = "Material:person"
+Icon = "Phosphor:star"
+Icon = "Phosphor-Filled:heart"
+Icon = "SF:gear"
+Icon = "rbxassetid://1234567890"
+```
+
+```lua
+VindUI:PreloadIcons({ "Lucide", "Material", "Phosphor", "SF" })
+local icon = VindUI:GetIcon("house", "Lucide")
+```
