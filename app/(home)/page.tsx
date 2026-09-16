@@ -22,7 +22,7 @@ export default function HomePage() {
         </p>
         <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Zyn Docs</h1>
         <p className="mt-5 max-w-lg text-lg leading-8 text-fd-muted-foreground">
-          Documentation, libraries, and resources from Zynkore in one place.
+          Scripts and librarys by Zynkore
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
