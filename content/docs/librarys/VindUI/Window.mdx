@@ -1,0 +1,107 @@
+---
+title: Window
+---
+
+## Window
+### `CreateWindow(options)`
+
+Creates the main window and returns the object used to add tabs, panels, and dock buttons.
+```lua
+local Window = VindUI:CreateWindow({
+    Title = "My Script",
+    Subtitle = "v1.0.0",
+    Icon = "Lucide:box",
+    Size = UDim2.fromOffset(640, 455),
+    MinSize = Vector2.new(500, 360),
+    Draggable = true,
+    Resizable = true,
+    UseBlur = true,
+    DefaultTab = "Home",
+    ToggleKeybind = Enum.KeyCode.RightShift,
+    TogglePosition = UDim2.fromOffset(20, 220)
+})
+```
+
+<Accordions>
+  <Accordion title="Title">
+    <div className="space-y-1">
+      <div>Text displayed at the top of the window.</div>
+      <div><strong>Type:</strong> <code>string</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="Subtitle">
+    <div className="space-y-1">
+      <div>Smaller text displayed below the title.</div>
+      <div><strong>Type:</strong> <code>string</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="Icon">
+    <div className="space-y-1">
+      <div>Window icon.</div>
+      <div><strong>Type:</strong> <code>string</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="Size">
+    <div className="space-y-1">
+      <div>Initial window size.</div>
+      <div><strong>Type:</strong> <code>UDim2</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="MinSize">
+    <div className="space-y-1">
+      <div>Smallest allowed size while resizing.</div>
+      <div><strong>Type:</strong> <code>Vector2</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="Draggable">
+    <div className="space-y-1">
+      <div>Allows the window to be dragged.</div>
+      <div><strong>Type:</strong> <code>boolean</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="Resizable">
+    <div className="space-y-1">
+      <div>Enables the resize handle.</div>
+      <div><strong>Type:</strong> <code>boolean</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="UseBlur">
+    <div className="space-y-1">
+      <div>Enables background blur.</div>
+      <div><strong>Type:</strong> <code>boolean</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="DefaultTab">
+    <div className="space-y-1">
+      <div>Tab selected when the window opens.</div>
+      <div><strong>Type:</strong> <code>string</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="ToggleKeybind">
+    <div className="space-y-1">
+      <div>Key used to show or hide the interface.</div>
+      <div><strong>Type:</strong> <code>Enum.KeyCode</code></div>
+    </div>
+  </Accordion>
+  <Accordion title="TogglePosition">
+    <div className="space-y-1">
+      <div>Position of the mobile toggle button.</div>
+      <div><strong>Type:</strong> <code>UDim2</code></div>
+    </div>
+  </Accordion>
+</Accordions>
+
+### Window methods
+```lua
+Window:SetTitle("New title", "New subtitle")
+Window:Open()
+Window:Close()
+Window:Toggle()
+Window:ToggleFullscreen()
+Window:SelectTab("Settings")
+Window:JumpToElement("Primary Color")
+
+print(Window:IsOpen())
+
+Window:Destroy()
+```
