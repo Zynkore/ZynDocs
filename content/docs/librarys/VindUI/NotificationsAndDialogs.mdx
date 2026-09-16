@@ -1,0 +1,60 @@
+---
+title: Notifications and dialogs
+---
+
+### Notification
+```lua
+VindUI:Notify({
+    Title = "Configuration saved",
+    Text = "Your preferences have been updated.",
+    Type = "success",
+    Duration = 4,
+    Icon = "Lucide:check",
+    Actions = {
+        {
+            Text = "View",
+            Callback = function() print("Opened") end,
+        },
+    }
+})
+```
+Built-in types are `info`, `success`, `warning`, and `error`. You may also provide a custom `Color`.
+
+### Confirmation
+```lua
+VindUI:Confirm({
+    Window = Window,
+    Title = "Delete configuration?",
+    Text = "This action cannot be undone.",
+    ConfirmText = "Delete",
+    CancelText = "Cancel",
+    Danger = true,
+    Callback = function(confirmed)
+        if confirmed then print("Confirmed") end
+    end
+})
+```
+
+### Modal with fields
+```lua
+VindUI:Modal({
+    Window = Window,
+    Title = "Create profile",
+    Text = "Fill in the details below.",
+    ConfirmText = "Create",
+    CancelText = "Cancel",
+    Fields = {
+        { Key = "name", Label = "Name", Placeholder = "My profile" },
+        {
+            Key = "description",
+            Label = "Description",
+            Placeholder = "Optional",
+            Type = "textarea",
+        },
+    },
+    Callback = function(confirmed, values)
+        if confirmed then print(values.name, values.description) end
+    end
+})
+```
+`Confirm` and `Modal` return an object with `Close()` for programmatic dismissal.
