@@ -1,6 +1,8 @@
 {
   "title": "VindUI - Reborn",
   "pages": [
-    "Installation"
+    "Installation",
+    "QuickStart",
+    "Window"
   ]
 }
