@@ -22,19 +22,52 @@ local Window = VindUI:CreateWindow({
 })
 ```
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `Title` | `string` | Text displayed at the top of the window. |
-| `Subtitle` | `string` | Smaller text displayed below the title. |
-| `Icon` | `string` | Window icon. |
-| `Size` | `UDim2` | Initial window size. |
-| `MinSize` | `Vector2` | Smallest allowed size while resizing. |
-| `Draggable` | `boolean` | Allows the window to be dragged. |
-| `Resizable` | `boolean` | Enables the resize handle. |
-| `UseBlur` | `boolean` | Enables background blur. |
-| `DefaultTab` | `string` | Tab selected when the window opens. |
-| `ToggleKeybind` | `Enum.KeyCode` | Key used to show or hide the interface. |
-| `TogglePosition` | `UDim2` | Position of the mobile toggle button. |
+<Accordions>
+  <Accordion title="Title">
+    <p>Text displayed at the top of the window.</p>
+    <p><strong>Type:</strong> <code>string</code></p>
+  </Accordion>
+  <Accordion title="Subtitle">
+    <p>Smaller text displayed below the title.</p>
+    <p><strong>Type:</strong> <code>string</code></p>
+  </Accordion>
+  <Accordion title="Icon">
+    <p>Window icon.</p>
+    <p><strong>Type:</strong> <code>string</code></p>
+  </Accordion>
+  <Accordion title="Size">
+    <p>Initial window size.</p>
+    <p><strong>Type:</strong> <code>UDim2</code></p>
+  </Accordion>
+  <Accordion title="MinSize">
+    <p>Smallest allowed size while resizing.</p>
+    <p><strong>Type:</strong> <code>Vector2</code></p>
+  </Accordion>
+  <Accordion title="Draggable">
+    <p>Allows the window to be dragged.</p>
+    <p><strong>Type:</strong> <code>boolean</code></p>
+  </Accordion>
+  <Accordion title="Resizable">
+    <p>Enables the resize handle.</p>
+    <p><strong>Type:</strong> <code>boolean</code></p>
+  </Accordion>
+  <Accordion title="UseBlur">
+    <p>Enables background blur.</p>
+    <p><strong>Type:</strong> <code>boolean</code></p>
+  </Accordion>
+  <Accordion title="DefaultTab">
+    <p>Tab selected when the window opens.</p>
+    <p><strong>Type:</strong> <code>string</code></p>
+  </Accordion>
+  <Accordion title="ToggleKeybind">
+    <p>Key used to show or hide the interface.</p>
+    <p><strong>Type:</strong> <code>Enum.KeyCode</code></p>
+  </Accordion>
+  <Accordion title="TogglePosition">
+    <p>Position of the mobile toggle button.</p>
+    <p><strong>Type:</strong> <code>UDim2</code></p>
+  </Accordion>
+</Accordions>
 
 ### Window methods
 ```lua
