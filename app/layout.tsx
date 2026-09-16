@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               api: '/ZynDocs/api/search',
             },
           }}
-        >
+          >
           {children}
         </RootProvider>
       </body>
