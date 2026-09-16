@@ -1,0 +1,42 @@
+---
+title: Quick start
+---
+
+## Quick start
+
+```lua
+local VindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Skinny-yz/VVind-UI/refs/heads/main/src.lua"))()
+
+local Window = VindUI:CreateWindow({
+    Title = "Vind Ui Reborn",
+    Subtitle = "My interface",
+    Icon = "Lucide:sparkles",
+    Size = UDim2.fromOffset(640, 455),
+    MinSize = Vector2.new(500, 360),
+    Draggable = true,
+    Resizable = true,
+    UseBlur = true,
+    DefaultTab = "Home"
+})
+
+local Home = Window:AddTab({
+  Name = "Home",
+  Icon = "Lucide:house"
+})
+Home:AddSection("Main", "Lucide:settings")
+Home:AddToggle({
+    Text = "Enable feature",
+    Description = "A simple toggle with a saved flag",
+    Default = false,
+    Flag = "feature_enabled",
+    Callback = function(value)
+        print("Enabled:", value)
+    end
+})
+
+VindUI:Notify({
+    Title = "Vind Ui Reborn",
+    Text = "Interface loaded.",
+    Type = "success"
+})
+```
