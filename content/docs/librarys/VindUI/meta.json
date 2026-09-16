@@ -3,6 +3,8 @@
   "pages": [
     "Installation",
     "QuickStart",
-    "Window"
+    "Window",
+    "TabsAndSubtabs",
+    "NotificationsAndDialogs"
   ]
 }
