@@ -217,6 +217,17 @@ header nav, #nd-subnav {
     background: transparent !important;
 }
 
+/* Keep accordion details compact without changing regular document prose. */
+#nd-page article [role="region"] > .prose-no-margin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#nd-page article [role="region"] > .prose-no-margin > p {
+    margin: 0;
+}
+
 /* Keep previous/next navigation directly after the document content. */
 #nd-page > article > [role="none"].flex-1 {
     flex: none;
