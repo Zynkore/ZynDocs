@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const githubUrl = 'https://github.com/Zynkore/ZynDocs';
+const githubUrl = 'https://github.com/Zynkore/Hub';
 
 function GitHubIcon() {
   return (
@@ -20,11 +20,11 @@ export default function HomePage() {
     <main className="flex flex-1 items-center justify-center px-6 py-16">
       <section className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-fd-muted-foreground">
-          Documentation
+          Documentation hub
         </p>
         <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Zyn Docs</h1>
         <p className="mt-5 max-w-lg text-lg leading-8 text-fd-muted-foreground">
-          Documentação, bibliotecas e recursos da Zynkore em um só lugar.
+          Documentation, libraries, and resources from Zynkore in one place.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -32,7 +32,7 @@ export default function HomePage() {
             href="/docs"
             className="inline-flex items-center justify-center rounded-lg bg-fd-primary px-5 py-3 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
           >
-            Abrir documentação
+            Open documentation
           </Link>
           <a
             href={githubUrl}
