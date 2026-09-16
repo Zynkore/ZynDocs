@@ -1,9 +1,50 @@
 import Link from 'next/link';
+
+const githubUrl = 'https://github.com/Zynkore/ZynDocs';
+
+function GitHubIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="size-5"
+      fill="currentColor"
+    >
+      <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   return (
-    <div className="flex flex-col justify-center text-center flex-1">
-      <h1 className="text-2xl font-bold mb-4">Zyn Docs</h1>
-      <p>{' '}<Link href="/docs" className="font-medium underline">Click to open docs </Link>{' '}</p>
-    </div>
+    <main className="flex flex-1 items-center justify-center px-6 py-16">
+      <section className="mx-auto flex w-full max-w-2xl flex-col items-center text-center">
+        <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-fd-muted-foreground">
+          Documentation
+        </p>
+        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Zyn Docs</h1>
+        <p className="mt-5 max-w-lg text-lg leading-8 text-fd-muted-foreground">
+          Documentação, bibliotecas e recursos da Zynkore em um só lugar.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/docs"
+            className="inline-flex items-center justify-center rounded-lg bg-fd-primary px-5 py-3 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Abrir documentação
+          </Link>
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-fd-border bg-fd-card px-5 py-3 text-sm font-medium text-fd-card-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground"
+          >
+            <GitHubIcon />
+            GitHub
+          </a>
+        </div>
+      </section>
+    </main>
   );
 }
