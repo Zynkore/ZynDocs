@@ -8,3 +8,9 @@ description: v1.0.0
 ```luau
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Zynkore/Librarys/refs/heads/main/MyLibrarys/ZynLib.lua"))()
 ```
+
+## Loading local library
+```luau
+local LibraryName = "ZynLib.lua"
+local Library = loadstring(readfile(LibraryName))()
+```
