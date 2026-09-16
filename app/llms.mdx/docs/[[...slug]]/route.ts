@@ -1,9 +1,7 @@
 import { docsLlms, source } from '@/lib/source';
 import { getPageMarkdownUrl } from '@/lib/shared';
 import { notFound } from 'next/navigation';
-
 export const revalidate = false;
-
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ slug?: string[] }> },
