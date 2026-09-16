@@ -1,7 +1,5 @@
 import Link from 'next/link';
-
 const githubUrl = 'https://github.com/Zynkore/Hub';
-
 function GitHubIcon() {
   return (
     <svg
