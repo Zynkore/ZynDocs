@@ -1,0 +1,104 @@
+---
+title: Panels
+---
+l
+Panels use the main content area and can be connected to buttons in the bottom dock.
+
+### Custom panel and dock button
+```lua
+local Panel = Window:AddPanelTab({
+    Name = "Custom Panel",
+    Icon = "Lucide:panel-right",
+    Hidden = true,
+    OnToggle = function(open)
+        print("Panel open:", open)
+    end
+})
+
+local DockButton = Window:AddDockButton({
+    Name = "Custom",
+    Icon = "Lucide:panel-right",
+    Callback = function()
+        Panel:Toggle()
+    end
+})
+
+Panel:Open()
+Panel:Close()
+Panel:Toggle()
+print(Panel:IsOpen())
+
+DockButton:SetActive(true)
+```
+Use `Panel.Tab` to add standard UI elements to a custom panel.
+
+### Spotify
+The Spotify panel works as a remote control. It requires a compatible bridge for authentication, player state, and playback commands.
+```lua
+local Spotify = Window:AddSpotifyPanel({
+    Name = "Spotify",
+    Title = "Spotify Remote",
+    Icon = "Lucide:music-2",
+    BridgeUrl = "https://your-backend.example.com",
+    ConnectUrl = "https://your-backend.example.com/connect",
+    AutoConnect = true
+})
+
+Spotify:Open()
+Spotify:Connect()
+Spotify:Send("pause")
+Spotify:Disconnect()
+```
+Available methods: `Open`, `Close`, `Toggle`, `IsOpen`, `Connect`, `Disconnect`, `Send`, and `SetState`.
+
+### Chat
+```lua
+local Chat = Window:AddChatPanel({
+    Name = "Assistant",
+    Title = "Vind Assistant",
+    Icon = "Lucide:bot",
+    Hidden = true,
+    Placeholder = "Type a message...",
+    SendTimeout = 60,
+    OnSend = function(panel, text)
+        panel:AddMessage("assistant", "You sent: " .. text)
+    end,
+    OnClear = function() print("History cleared") end,
+    OnStop = function() print("Generation stopped") end,
+    OnRegenerate = function(panel, text)
+        print("Regenerate:", text)
+    end
+})
+
+Chat:AddMessage("assistant", "Hello! How can I help?")
+Chat:ShowTyping()
+Chat:HideTyping()
+Chat:Clear()
+```
+Available methods: `Open`, `Close`, `Toggle`, `IsOpen`, `AddMessage`, `LogToolCall`, `HandleToolCall`, `ShowTyping`, `HideTyping`, `IsSending`, `Clear`, and `Destroy`.
+
+### Cloud and global chat panels
+```lua
+local CloudPanel = Window:AddCloudPanel({
+    Name = "Cloud",
+    Icon = "Lucide:cloud",
+    Hidden = true,
+    Service = Cloud,
+    OnApplied = function(profile)
+        print("Applied:", profile)
+    end
+})
+
+local GlobalChat = Window:AddGlobalChatPanel({
+    Name = "Global Chat",
+    Title = "Community",
+    Icon = "Lucide:messages-square",
+    Hidden = true,
+    Service = Cloud,
+    Placeholder = "Write a message...",
+    PollInterval = 5,
+    HistoryLimit = 50,
+    AnonymousByDefault = false
+})
+```
+Both panels require a backend compatible with the `CloudService` request contract.
