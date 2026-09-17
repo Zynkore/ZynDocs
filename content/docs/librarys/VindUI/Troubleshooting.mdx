@@ -1,0 +1,30 @@
+---
+title: Troubleshooting
+---
+### The interface does not open
+
+Make sure the source URL returns plain Luau rather than HTML, a broken redirect, or a Markdown document. Confirm that `loadstring` and `game:HttpGet` are available.
+
+### Icons do not appear
+
+Use the correct prefix, such as `Lucide:house`, and preload the pack with `PreloadIcons`. An invalid `rbxassetid` also produces an empty icon.
+
+### A configuration does not save
+
+The runtime must provide filesystem access. Check the error returned by `SaveConfig` instead of assuming that the write succeeded.
+
+### Spotify does not connect
+
+`BridgeUrl` must point to a live, compatible bridge. Responses such as `400`, `401`, or `403` usually indicate invalid authentication, an incorrect endpoint, or a service-side restriction.
+
+### Cloud, leaderboard, or global chat is empty
+
+These components do not generate data on their own. Configure a `CloudService` backed by a server that implements the expected routes.
+
+### The assistant does not respond
+
+Check the provider `Endpoint`, `Model`, and authentication. Empty keys in the example are intentional.
+
+### A removed legacy panel causes an error
+
+Update to the latest [`src.lua`](https://github.com/Skinny-yz/VVind-UI/blob/main/src.lua). The current build safely ignores legacy `AddDefaultCreditsPanel()` calls and does not create a panel.
