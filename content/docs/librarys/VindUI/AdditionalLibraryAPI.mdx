@@ -4,9 +4,9 @@ title: Additional library API
 ```lua
 VindUI:SetScaleRange(0.75, 1.35)
 VindUI:SetBlurEnabled(true)
-
 local clean = VindUI:SanitizeText(
-    userInput, {
+    userInput,
+    {
         MaxLength = 300
     }
 )
