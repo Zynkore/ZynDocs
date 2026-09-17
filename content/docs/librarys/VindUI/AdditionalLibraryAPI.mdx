@@ -1,0 +1,30 @@
+---
+title: Additional library API
+---
+```lua
+VindUI:SetScaleRange(0.75, 1.35)
+VindUI:SetBlurEnabled(true)
+
+local clean = VindUI:SanitizeText(
+    userInput, {
+        MaxLength = 300
+    }
+)
+
+VindUI:Unload()
+```
+
+Manual feedback delivery is also available:
+```lua
+local success, err = VindUI:SendFeedbackWebhook(
+    "WEBHOOK_URL",
+    5,
+    "Great interface",
+    {
+        Title = "Vind Ui Reborn Feedback",
+        Color = 0x7C5CFF
+    }
+)
+```
+
+Keep webhooks behind a private backend. Anyone can copy and abuse a webhook stored in public source code.
