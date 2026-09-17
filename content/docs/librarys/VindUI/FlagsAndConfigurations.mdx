@@ -1,0 +1,60 @@
+---
+title: Flags and configurations
+---
+
+A `Flag` connects a control to the configuration system. Keep flag names unique and stable between releases.
+```lua
+Tab:AddToggle({
+    Text = "Enabled",
+    Default = false,
+    Flag = "combat_enabled"
+})
+Tab:AddSlider({
+    Text = "Range",
+    Min = 1,
+    Max = 50,
+    Default = 15,
+    Flag = "combat_range"
+})
+
+local data = VindUI:GetConfig()
+VindUI:SetConfig({
+    combat_enabled = true,
+    combat_range = 25
+}, true)
+
+VindUI:SetUIElementValue("combat_range", 30)
+
+for _, element in ipairs(VindUI:ListUIElements()) do
+    print(element.Flag, element.Kind, element.Value)
+end
+```
+Pass `true` as the final argument to apply values without firing callbacks.
+
+### Local files
+```lua
+local success, err = VindUI:SaveConfig("default", {
+    Description = "My main configuration",
+    Tags = {
+        "main",
+        "public"
+    }
+})
+
+VindUI:LoadConfig("default", true)
+VindUI:RenameConfig("default", "legit")
+
+local configs = VindUI:ListConfigs()
+local meta = VindUI:GetConfigMeta("legit")
+local saved = VindUI:GetSavedConfig("legit")
+
+VindUI:DeleteConfig("legit")
+```
+Configurations are stored under `NullUI/Configs` to preserve compatibility with the current internal folder structure. File operations require filesystem functions in the runtime.
+
+### Temporary snapshots
+```lua
+local snapshot = VindUI:CreateSnapshot()
+VindUI:SetUIElementValue("combat_range", 50)
+VindUI:RestoreSnapshot(snapshot, true)
+```
