@@ -1,0 +1,40 @@
+---
+title: Cloud service
+---
+```lua
+local Cloud = VindUI:CloudService({
+    BaseUrl = "https://api.example.com",
+    Script = "my-script"
+})
+```
+
+| Method | Description |
+| --- | --- |
+| `List(state)` | Lists public configurations using search, sorting, and a cursor. |
+| `ListMine()` | Lists configurations published by the current user. |
+| `GetByShareCode(code)` | Finds a configuration by share code. |
+| `Publish(meta, data)` | Publishes a configuration and its metadata. |
+| `Delete(id)` | Deletes a publication owned by this device. |
+| `Like(id)` | Registers or toggles a like. |
+| `Download(id)` | Downloads a configuration. |
+| `SendChatMessage(userId, text)` | Sends a global chat message. |
+| `PollChatMessages(sinceId)` | Fetches newer chat messages. |
+| `ReportChatMessage(messageId)` | Reports a chat message. |
+| `Heartbeat(payload)` | Updates the current user's presence. |
+| `GetActiveCount()` | Returns the active user count. |
+| `GetLeaderboard(limit)` | Returns the activity leaderboard. |
+
+```lua
+local items, nextCursorOrError = Cloud:List({
+    Query = "legit",
+    Sort = "popular",
+    Cursor = nil,
+    PageSize = 20
+})
+if not items then
+    warn(nextCursorOrError)
+else
+    for _, item in ipairs(items) do print(item.Name) end
+end
+```
+`CloudService` is a client integration, not a ready-made server. Your backend must implement the routes expected by the library.
