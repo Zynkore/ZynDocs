@@ -1,0 +1,44 @@
+---
+title: AI assistant
+---
+The assistant connects a `ChatPanel` to an endpoint compatible with the chat completions request format.
+```lua
+local Assistant = VindUI:CreateAIAssistant({
+    Providers = {
+        {
+            Name = "OpenRouter",
+            Endpoint = "https://openrouter.ai/api/v1/chat/completions",
+            ApiKey = "YOUR_KEY",
+            Model = "openrouter/free"
+        }
+    },
+    Window = Window,
+    Persist = "vind-assistant-history",
+    SystemPrompt = "Keep answers short and useful.",
+    MaxRounds = 6,
+    MaxTokens = 800
+})
+
+local Chat = Window:AddChatPanel({
+    Title = "Assistant",
+    Icon = "Lucide:bot",
+    OnSend = function(panel, text)
+        Assistant:Ask(panel, text)
+    end,
+    OnClear = function()
+        Assistant:Reset()
+    end,
+    OnStop = function()
+        Assistant:Stop()
+    end
+})
+
+Assistant:Ask(Chat, "Explain this configuration")
+Assistant:Stop()
+Assistant:Reset()
+
+print(Assistant:IsBusy())
+print(Assistant:GetHistory())
+```
+
+Pass `Tools` when creating the assistant to register custom handlers. Validate every argument before allowing a tool to perform an action.
