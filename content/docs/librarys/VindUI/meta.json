@@ -6,6 +6,7 @@
     "Window",
     "Icons",
     "TabsAndSubtabs",
-    "NotificationsAndDialogs"
+    "NotificationsAndDialogs",
+    "Elements"
   ]
 }
