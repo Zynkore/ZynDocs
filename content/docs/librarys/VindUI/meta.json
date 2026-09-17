@@ -7,6 +7,15 @@
     "Icons",
     "TabsAndSubtabs",
     "NotificationsAndDialogs",
-    "Elements"
+    "Elements",
+    "FlagsAndConfigurations",
+    "Panels",
+    "CloudService",
+    "AIAssistant",
+    "AdditionalLibraryAPI",
+    "CompleteExample",
+    "Compatibility",
+    "Security",
+    "Troubleshooting"
   ]
 }
