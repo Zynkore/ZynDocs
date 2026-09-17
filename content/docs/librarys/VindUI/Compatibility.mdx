@@ -1,0 +1,14 @@
+---
+title: Compatibility
+---
+The visual layer uses regular Roblox APIs. Optional features depend on the current runtime:
+
+| Feature | Requirement |
+| --- | --- |
+| Remote loading | `game:HttpGet` and `loadstring` |
+| Local configurations | `readfile`, `writefile`, `isfile`, `makefolder`, and `listfiles` |
+| APIs and webhooks | A compatible HTTP request function |
+| Remote icon packs | HTTP access |
+| Spotify | A compatible external bridge |
+| Cloud and global chat | A compatible custom backend |
+| AI assistant | An AI endpoint and valid authentication |
