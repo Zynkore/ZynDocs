@@ -1,0 +1,415 @@
+---
+title: Elements
+---
+Every element can be added to a regular tab or a subtab.
+
+### Text and layout
+#### Label
+```lua
+local Label = Tab:AddLabel("Status: waiting")
+Label:Set("Status: ready")
+print(Label:Get())
+Label:Destroy()
+```
+
+#### Section
+```lua
+local Section = Tab:AddSection({
+    Text = "Combat",
+    Icon = "Lucide:swords"
+})
+Section:Set("Combat Settings")
+
+Tab:AddSection("Player", "Lucide:user")
+```
+
+#### Divider and LineText
+
+```lua
+Tab:AddDivider()
+Tab:AddLine()
+
+local Line = Tab:AddLineText("Advanced options")
+Line:Set("Experimental options")
+```
+`AddLine` is an alias for `AddDivider`.
+
+#### Paragraph
+l
+```lua
+local Paragraph = Tab:AddParagraph({
+    Title = "About",
+    Icon = "Lucide:info",
+    Text = "A larger block for descriptions, warnings, and instructions."
+})
+
+Paragraph:Set("New content")
+Paragraph:SetTitle("Information")
+print(Paragraph:Get())
+```
+
+### Actions and cards
+#### Button
+```lua
+local Button = Tab:AddButton({
+    Text = "Run action",
+    Description = "Click to continue",
+    Icon = "Lucide:play",
+    Callback = function()
+        print("Button pressed")
+    end
+})
+```
+
+#### Card
+```lua
+Tab:AddCard({
+    Title = "Profile",
+    Description = "Click to view",
+    UserId = game:GetService("Players").LocalPlayer.UserId,
+    Callback = function()
+        print("Card opened")
+    end
+})
+
+Tab:AddCard({
+    Title = "Project",
+    Description = "Current build",
+    Image = "rbxassetid://1234567890",
+    ButtonText = "Open",
+    ButtonCallback = function()
+        print("Opening project")
+    end
+})
+```
+Cards may include an embedded rating through the `Rating` option. Thumbnail options include `UserId`, `ThumbnailType`, and `ThumbnailSize`.
+
+#### GradientCard
+```lua
+Tab:AddGradientCard({
+    Title = "Premium",
+    Description = "A highlighted card with a gradient background",
+    ColorA = Color3.fromRGB(124, 92, 255),
+    ColorB = Color3.fromRGB(35, 200, 120),
+    Callback = function()
+        print("Card pressed")
+    end
+})
+```
+
+#### LoadoutGroup
+```lua
+Tab:AddLoadoutGroup({
+    Title = "Main Loadout",
+    Color = Color3.fromRGB(124, 92, 255),
+    Icons = { "Lucide:sword", "Lucide:shield", "Lucide:crosshair" },
+    ButtonText = "Equip",
+    Callback = function()
+        print("Loadout equipped")
+    end
+})
+```
+
+#### ChangelogEntry
+```lua
+Tab:AddChangelogEntry({
+    Version = "2.7.7",
+    Date = "August 27, 2026",
+    Changes = {
+        { Type = "Added", Text = "New panel" },
+        { Type = "Changed", Text = "Updated layout" },
+        { Type = "Fixed", Text = "Scaling issue" },
+        { Type = "Removed", Text = "Legacy option" },
+    }
+})
+```
+
+### Inputs and settings
+#### Toggle
+```lua
+local Toggle = Tab:AddToggle({
+    Text = "Auto Farm",
+    Description = "Enables or disables the feature",
+    Icon = "Lucide:power",
+    Default = false,
+    Locked = false,
+    Flag = "auto_farm",
+    Callback = function(value)
+        print(value)
+    end
+})
+
+Toggle:Set(true)
+Toggle:SetLocked(true)
+Toggle:OnChanged(function(value) print("Changed:", value) end)
+print(Toggle:Get())
+```
+
+#### Slider
+```lua
+local Slider = Tab:AddSlider({
+    Text = "Walk Speed",
+    Description = "Character movement speed",
+    Icon = "Lucide:gauge",
+    Min = 0,
+    Max = 100,
+    Default = 16,
+    Increment = 1,
+    Suffix = " studs",
+    Flag = "walk_speed",
+    Callback = function(value)
+        print(value)
+    end
+})
+
+Slider:Set(25)
+Slider:SetRange(0, 200)
+print(Slider:Get())
+```
+
+#### Dropdown
+```lua
+local Dropdown = Tab:AddDropdown({
+    Text = "Mode",
+    Description = "Select the current mode",
+    Icon = "Lucide:list",
+    Options = { "Legit", "Rage", "Custom" },
+    Default = "Legit",
+    MultiSelect = false,
+    Flag = "mode",
+    Callback = function(value)
+        print(value)
+    end
+})
+
+Dropdown:Set("Custom")
+Dropdown:SetOptions({ "A", "B", "C" })
+Dropdown:Refresh({ "One", "Two", "Three" })
+print(Dropdown:Get())
+```
+With `MultiSelect = true`, `Default`, `Set`, `Get`, and the callback use a table of selected values.
+
+#### Textbox
+```lua
+local Textbox = Tab:AddTextbox({
+    Text = "Nickname",
+    Description = "Name displayed in the interface",
+    Icon = "Lucide:type",
+    Placeholder = "Type here...",
+    Default = "Player",
+    Flag = "nickname",
+    Callback = function(text)
+        print(text)
+    end
+})
+
+Textbox:Set("VindUser")
+print(Textbox:Get())
+```
+
+#### ColorPicker
+```lua
+local Picker = Tab:AddColorPicker({
+    Text = "Accent color",
+    Icon = "Lucide:palette",
+    Default = Color3.fromRGB(124, 92, 255),
+    Flag = "accent_color",
+    Callback = function(color)
+        print(color)
+    end
+})
+
+Picker:Set(Color3.fromRGB(255, 90, 120))
+print(Picker:Get())
+```
+
+#### Keybind
+```lua
+local Keybind = Tab:AddKeybind({
+    Text = "Toggle menu",
+    Icon = "Lucide:keyboard",
+    Default = Enum.KeyCode.RightShift,
+    Flag = "menu_key",
+    Callback = function(key, event)
+        if event == "bind" then print("New key:", key) end
+        if event == "press" then print("Shortcut pressed") end
+    end
+})
+
+Keybind:Set(Enum.KeyCode.Insert)
+print(Keybind:Get())
+```
+
+### Rating
+```lua
+local Rating = Tab:AddRating({
+    Title = "Rate the interface",
+    Default = 4,
+    MaxStars = 5,
+    StarColor = Color3.fromRGB(255, 200, 60),
+    Placeholder = "Leave a comment...",
+    ButtonIcon = "Lucide:send",
+    ClearOnSubmit = true,
+    WebhookUrl = "",
+    Callback = function(stars, message)
+        print(stars, message)
+    end
+})
+
+Rating:Set(5, "Great interface")
+local stars, message = Rating:Get()
+```
+Webhook delivery is optional. Leave `WebhookUrl` empty when it is not in use.
+
+### Data and monitoring
+#### InfoGrid
+```lua
+local Grid = Tab:AddInfoGrid({
+    Title = "Session",
+    Description = "Current session details",
+    Color = Color3.fromRGB(124, 92, 255),
+    Columns = 2,
+    Items = {
+        { Label = "Status", Value = "Online" },
+        { Label = "Server", Value = "Public" },
+        { Label = "Players", Value = "8/12" },
+        { Label = "Ping", Value = "42 ms" },
+    }
+})
+
+Grid:SetValue("Ping", "38 ms")
+```
+
+#### Automatic grids
+```lua
+Tab:AddSystemInfoGrid({
+    Title = "System Info",
+    Description = "Current session data",
+    Columns = 2
+})
+
+Tab:AddActiveUsersGrid({
+    Service = Cloud,
+    Title = "Active Users",
+    Description = "Users online right now",
+    Interval = 30
+})
+
+Tab:AddLeaderboard({
+    Service = Cloud,
+    Title = "Leaderboard",
+    Description = "Most active users",
+    Interval = 30,
+    Limit = 10,
+    RevealByDefault = false
+})
+```
+`ActiveUsersGrid` and `Leaderboard` require a configured cloud service.
+
+#### Console
+```lua
+local Console = Tab:AddConsole({
+    Title = "Logs",
+    Height = 220,
+    MaxLogs = 100,
+    AutoCapture = false,
+})
+
+Console:Log("Interface loaded")
+Console:Log("Warning", Enum.MessageType.MessageWarning)
+Console:Log("Error", Enum.MessageType.MessageError)
+Console:Clear()
+```
+
+#### Table
+Tables support weighted columns, alignment, striped rows, hover states, and sorting by clicking a header.
+```lua
+local PlayersTable = Tab:AddTable({
+    Title = "Match Leaderboard",
+    Description = "Click any header to sort",
+    Height = 160,
+    RowHeight = 34,
+    Sortable = true,
+    Striped = true,
+    Columns = {
+        { Key = "rank", Label = "#", Weight = 0.45, Align = "Center" },
+        { Key = "name", Label = "Player", Weight = 1.8, Emphasized = true },
+        { Key = "score", Label = "Score", Weight = 1, Align = "Right" },
+        { Key = "kd", Label = "K/D", Weight = 0.7, Align = "Right" },
+    },
+    Rows = {
+        { rank = "01", name = "Charlie", score = 2310, kd = "3.8" },
+        { rank = "02", name = "Alice", score = 1520, kd = "2.4" },
+        { rank = "03", name = "Bob", score = 980, kd = "1.7" },
+        { rank = "04", name = "Dana", score = 640, kd = "1.2" },
+    }
+})
+
+PlayersTable:SetRows({
+    { rank = "01", name = "NewPlayer", score = 1800, kd = "2.6" },
+})
+
+local rows = PlayersTable:GetRows()
+```
+Column options are `Key`, `Label`, `Weight`, `Align`, and `Emphasized`.
+
+#### CardGrid
+A responsive grid for catalogs, servers, scripts, profiles, or any other card collection. It includes search, sorting, adaptive columns, and asynchronous loading.
+```lua
+local CardGrid = Tab:AddCardGrid({
+    Title = "Script Hub",
+    Height = 300,
+    Search = true,
+    SearchPlaceholder = "Search scripts...",
+    Sorts = { "Popular", "Newest" },
+    DefaultSort = "Popular",
+    PageSize = 12,
+    Columns = 3,
+    CardMinWidth = 150,
+    CardHeight = 96,
+    AutoCardHeight = false,
+    DescriptionHeight = 22,
+    OuterPadding = 12,
+    LoadingText = "Loading...",
+    EmptyText = "Nothing found",
+    ErrorText = "Could not load the list",
+    Fetch = function(state)
+        return {
+            {
+                Title = "Example item",
+                Description = "Card returned by Fetch",
+                Icon = "Lucide:box",
+                Byline = "Official",
+                Stats = {{ Icon = "heart", Text = "2.4k" }},
+                Callback = function() print("Selected") end,
+            },
+        }
+    end
+})
+
+CardGrid:SetQuery("example")
+CardGrid:SetSort("Newest")
+CardGrid:Refresh()
+```
+Advanced options include `MaxColumns`, `CardWidth`, `MinCardHeight`, `CardPadding`, `OuterPadding`, `ShowScrollbar`, `ScrollBarThickness`, `FixedHeight`, and `AutoCardHeight`.
+
+### Returned control API
+| Element | Main methods |
+| --- | --- |
+| `Label` | `Set`, `Get`, `Destroy` |
+| `Section` | `Set`, `Destroy` |
+| `Divider` | `Destroy` |
+| `LineText` | `Set`, `Destroy` |
+| `Paragraph` | `Set`, `Get`, `SetTitle`, `Destroy` |
+| `Rating` | `Set`, `Get`, `Destroy` |
+| `Toggle` | `Set`, `Get`, `SetLocked`, `OnChanged`, `Destroy` |
+| `Slider` | `Set`, `Get`, `SetRange`, `OnChanged`, `Destroy` |
+| `Dropdown` | `Set`, `Get`, `SetOptions`, `Refresh`, `OnChanged`, `Destroy` |
+| `Textbox` | `Set`, `Get`, `OnChanged`, `Destroy` |
+| `ColorPicker` | `Set`, `Get`, `OnChanged`, `Destroy` |
+| `Keybind` | `Set`, `Get`, `OnChanged`, `Destroy` |
+| `Console` | `Log`, `Clear`, `Destroy` |
+| `Table` | `SetRows`, `GetRows`, `Destroy` |
+| `InfoGrid` | `SetValue`, `Destroy` |
+| `CardGrid` | `Refresh`, `SetQuery`, `SetSort`, `Destroy` |
+Controls expose `Instance` when direct access to the underlying Roblox object is useful.
