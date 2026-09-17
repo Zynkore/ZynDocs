@@ -5,7 +5,8 @@ title: Window
 ## Creating window
 ```luau
 local Window = Library:MakeWindow({
-  Title = "Cool title", -- No function
+  Title = "Window title", -- No function
+  StartMinimized = false,
   UICorner = false,
   CornerRadius = UDim.new(0, 6)
 })
@@ -19,6 +20,13 @@ local Window = Library:MakeWindow({
       <div><strong>Default:</strong> <code>"Missing title"</code></div> 
     </div>
   </Accordion>
+  
+  <Accordion title="StartMinimized">
+    <div>Window start minimized?</div>
+    <div><strong>Type: </strong><code>Boolean</code></div>
+    <div><strong>Default: </strong><code>false</code></div>
+  </Accordion>
+  
   <Accordion title="UICorner">
     <div className="space-y-1">
       <div>Window corner</div>
@@ -26,6 +34,7 @@ local Window = Library:MakeWindow({
       <div><strong>Default:</strong> <code>false</code></div>
     </div>
   </Accordion>
+  
   <Accordion title="CornerRadius">
     <div className="space-y-1">
       <div>Window corner radius</div>
